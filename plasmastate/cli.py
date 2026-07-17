@@ -4,6 +4,13 @@ import argparse
 
 from . import __version__
 
+from .command.factory import CommandFactory
+
+
+from .core.context import Context
+
+from pathlib import Path
+
 
 def create_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -19,7 +26,7 @@ def create_parser() -> argparse.ArgumentParser:
 
     subparsers = parser.add_subparsers(
         dest="command",
-        # required=True,
+        required=True,
     )
 
     subparsers.add_parser(
@@ -51,17 +58,6 @@ def main() -> int:
     if args.command is None:
         parser.print_help()
         return 1
-    match args.command:
-        case "backup":
-            print("Backup is not implemented yet.")
-
-        case "restore":
-            print("Restore is not implemented yet.")
-
-        case "doctor":
-            print("Doctor is not implemented yet.")
-
-        case "validate":
-            print("Validation is not implemented yet.")
-
-    return 0
+    context = Context(Path.cwd())
+    command = CommandFactory.create(args.command, context)
+    return command.run()
