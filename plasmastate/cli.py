@@ -1,14 +1,8 @@
 from __future__ import annotations
-
 import argparse
-
 from . import __version__
-
 from .command.factory import CommandFactory
-
-
 from .core.context import Context
-
 from pathlib import Path
 
 
