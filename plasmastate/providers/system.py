@@ -19,11 +19,7 @@ class SystemProvider(Provider):
             "platform_version": platform.version(),
             "platform_release": platform.release(),
             "architecture": platform.architecture(),
-            "processor": platform.processor(),
-            "cpu_count": psutil.cpu_count(logical=True),
-            "memory_total": psutil.virtual_memory().total,
-            "disk_usage": psutil.disk_usage("/")._asdict(),
-            "environment_variables": dict(os.environ),
+            
         }
         return system_info
 

@@ -12,8 +12,8 @@ class DoctorCommand(Command):
           returns:
             int: exit code
         """
-        providers = ProviderFactory.create(self.context)
-        for provider in providers:
-            print(provider.collect())
-
+        #providers = ProviderFactory.create(self.context)
+        #for provider in providers:
+        #    print(provider.collect())
+        ProviderFactory.produce_summary(self.context)
         return 0
